@@ -1,6 +1,7 @@
 let speedtesturl="https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt";
 
 async function getContentFromUrl(url) {
+ 
   try {
     const response = await fetch(url);
     if (!response.ok) {
