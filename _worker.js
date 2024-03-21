@@ -1,4 +1,4 @@
-let speedtesturl='https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt';
+let speedtesturl=`https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt`;
 export default {
   async fetch(request) {
     let targetUrl = getContentFromUrl(speedtesturl);
@@ -63,7 +63,7 @@ async function getContentFromUrl(url) {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-				console.error('获取地址时出错:', response.status, response.statusText);
+	console.error('获取地址时出错:', response.status, response.statusText);
     }
     const content = await response.text();
     return content;
