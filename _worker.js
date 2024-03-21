@@ -16,7 +16,11 @@ async function getContentFromUrl(url) {
 
 export default {
   async fetch(request) {
-    getContentFromUrl(speedtesturl);
+    url=getContentFromUrl(speedtesturl);
+	  return new Response(url, {
+				status: 400,
+				headers: { 'content-type': 'text/plain; charset=utf-8' },
+				});
     let targetUrl = "https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg"; //getContentFromUrl(speedtesturl);
     let cfRequest = new Request(targetUrl, request);
     let response = await fetch(cfRequest);
