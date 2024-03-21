@@ -7,7 +7,7 @@ export default {
     // 将测试结果反馈给用户
     return response;
 
-    
+    /*
     // 创建一个新的 URL 对象
     let url = new URL(request.url);
     let path = url.pathname.substring(1);
@@ -52,6 +52,7 @@ export default {
     let response = await fetch(cfRequest);
 
     // 将测试结果反馈给用户
-    return response;
+    return response; 
+    */
   }
 };
