@@ -8,7 +8,7 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-
+let DEFAULT_URL="https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg";
 let speedtesturl="https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt";
 
 async function getContentFromUrl(url) { 
@@ -27,8 +27,9 @@ async function getContentFromUrl(url) {
 
 export default {
   async fetch(request) {
-    let targetUrl= await getContentFromUrl(speedtesturl)
+    let targetUrl= await getContentFromUrl(speedtesturl);
     targetUrl = targetUrl.replace(/\r?\n$/, '').trim();
+    targetUrl = targetUrl || DEFAULT_URL;
     let cfRequest = new Request(targetUrl, request);
     let response = await fetch(cfRequest);
     // 将测试结果反馈给用户
