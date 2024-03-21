@@ -1,5 +1,13 @@
 export default {
   async fetch(request) {
+    let targetUrl = `https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg`;
+    let cfRequest = new Request(targetUrl, request);
+    let response = await fetch(cfRequest);
+
+    // 将测试结果反馈给用户
+    return response;
+
+    
     // 创建一个新的 URL 对象
     let url = new URL(request.url);
     let path = url.pathname.substring(1);
