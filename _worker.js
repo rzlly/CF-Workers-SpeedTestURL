@@ -1,6 +1,8 @@
+let speedtesturl='https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt';
 export default {
   async fetch(request) {
-    let targetUrl = `https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg`;
+    let targetUrl = getContentFromUrl(speedtesturl);
+    //`https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg`;
     let cfRequest = new Request(targetUrl, request);
     let response = await fetch(cfRequest);
 
@@ -56,3 +58,18 @@ export default {
     */
   }
 };
+
+async function getContentFromUrl(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+				console.error('获取地址时出错:', response.status, response.statusText);
+    }
+    const content = await response.text();
+    return content;
+  } catch (error) {
+    console.error('Error fetching content:', error);
+    return null;
+  }
+}
+
