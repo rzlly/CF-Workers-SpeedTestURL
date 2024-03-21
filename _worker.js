@@ -1,6 +1,17 @@
+/**
+ * Welcome to Cloudflare Workers! This is your first worker.
+ *
+ * - Run "npm run dev" in your terminal to start a development server
+ * - Open a browser tab at http://localhost:8787/ to see your worker in action
+ * - Run "npm run deploy" to publish your worker
+ *
+ * Learn more at https://developers.cloudflare.com/workers/
+ */
+
+
 let speedtesturl="https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt";
 
-async function getContentFromUrl(url) {
+async function getContentFromUrl(url) { 
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -16,15 +27,10 @@ async function getContentFromUrl(url) {
 
 export default {
   async fetch(request) {
-    url=getContentFromUrl(speedtesturl);
-	  return new Response(url, {
-				status: 400,
-				headers: { 'content-type': 'text/plain; charset=utf-8' },
-				});
-    let targetUrl = "https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg"; //getContentFromUrl(speedtesturl);
+    let targetUrl= await getContentFromUrl(speedtesturl)
+    targetUrl = targetUrl.replace(/\r?\n$/, '').trim();
     let cfRequest = new Request(targetUrl, request);
     let response = await fetch(cfRequest);
-
     // 将测试结果反馈给用户
     return response;
 
@@ -77,6 +83,3 @@ export default {
     */
   }
 };
-
-
-
