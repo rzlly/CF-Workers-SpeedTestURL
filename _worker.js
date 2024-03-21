@@ -1,8 +1,7 @@
-let speedtesturl=`https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt`;
+let speedtesturl="https://raw.githubusercontent.com/rzlly/mycf/main/speedtesturl.txt";
 export default {
   async fetch(request) {
     let targetUrl = getContentFromUrl(speedtesturl);
-    //`https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDesktop-17.1.1-51537.dmg`;
     let cfRequest = new Request(targetUrl, request);
     let response = await fetch(cfRequest);
 
